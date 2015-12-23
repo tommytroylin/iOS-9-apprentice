@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var slider: UISlider!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,9 +22,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showAlert() {
-        let alert = UIAlertController(title: "Hello, World",
-            message: "This is my first app!", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Awesome", style: .Default, handler: nil)
+        let alert = UIAlertController(title: "Result",
+            message: "Slider result:\(lroundf(slider.value))", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK!", style: .Default, handler: nil)
         alert.addAction(action)
         self.presentViewController(alert, animated: true, completion: nil)
     }
