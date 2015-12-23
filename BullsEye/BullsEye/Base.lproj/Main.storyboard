@@ -44,6 +44,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Msl-pR-sY2">
                                 <rect key="frame" x="44" y="247" width="71" height="30"/>
                                 <state key="normal" title="Start Over"/>
+                                <connections>
+                                    <action selector="startOver" destination="BYZ-38-t0r" eventType="touchUpInside" id="zgn-ZW-2sz"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9K-Gl-E0q">
                                 <rect key="frame" x="259" y="159" width="50" height="30"/>
@@ -87,7 +90,10 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="roundLabel" destination="Td5-Ab-duO" id="vIf-v1-Hca"/>
+                        <outlet property="scoreLabel" destination="qwv-hw-tUI" id="SdU-xZ-3Xz"/>
                         <outlet property="slider" destination="bpl-S4-qgK" id="Wbd-jQ-Jfl"/>
+                        <outlet property="targetLabel" destination="QZu-79-gCS" id="EcV-gW-X21"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
