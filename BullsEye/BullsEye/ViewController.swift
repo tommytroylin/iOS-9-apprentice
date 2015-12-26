@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     var targetValue = 0
     var score = 0
-    var round = 0
+    var round = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
 
     @IBAction func startOver() {
         self.score = 0
-        self.round = 0
+        self.round = 1
         self.newTargetValue()
         self.updateLabels()
         
