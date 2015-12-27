@@ -9,22 +9,24 @@
 /* Begin PBXBuildFile section */
 		656ED6021C2E75E1006631FB /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656ED6011C2E75E1006631FB /* AboutViewController.swift */; };
 		656ED6081C2FD333006631FB /* BullsEye.html in Resources */ = {isa = PBXBuildFile; fileRef = 656ED6071C2FD333006631FB /* BullsEye.html */; };
+		656ED60F1C2FDE39006631FB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 656ED60D1C2FDE39006631FB /* Default-568h@2x.png */; };
+		656ED6101C2FDE39006631FB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 656ED60E1C2FDE39006631FB /* Default@2x.png */; };
 		65E0A07C1C28147200162B27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0A07B1C28147200162B27 /* AppDelegate.swift */; };
 		65E0A07E1C28147200162B27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E0A07D1C28147200162B27 /* ViewController.swift */; };
 		65E0A0811C28147200162B27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E0A07F1C28147200162B27 /* Main.storyboard */; };
 		65E0A0831C28147200162B27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65E0A0821C28147200162B27 /* Assets.xcassets */; };
-		65E0A0861C28147200162B27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65E0A0841C28147200162B27 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		656ED6011C2E75E1006631FB /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		656ED6071C2FD333006631FB /* BullsEye.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BullsEye.html; sourceTree = "<group>"; };
+		656ED60D1C2FDE39006631FB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		656ED60E1C2FDE39006631FB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		65E0A0781C28147100162B27 /* BullsEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BullsEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65E0A07B1C28147200162B27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65E0A07D1C28147200162B27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		65E0A0801C28147200162B27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65E0A0821C28147200162B27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		65E0A0851C28147200162B27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65E0A0871C28147200162B27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,12 +60,13 @@
 		65E0A07A1C28147100162B27 /* BullsEye */ = {
 			isa = PBXGroup;
 			children = (
+				656ED60D1C2FDE39006631FB /* Default-568h@2x.png */,
+				656ED60E1C2FDE39006631FB /* Default@2x.png */,
 				656ED6071C2FD333006631FB /* BullsEye.html */,
 				65E0A07B1C28147200162B27 /* AppDelegate.swift */,
 				65E0A07D1C28147200162B27 /* ViewController.swift */,
 				65E0A07F1C28147200162B27 /* Main.storyboard */,
 				65E0A0821C28147200162B27 /* Assets.xcassets */,
-				65E0A0841C28147200162B27 /* LaunchScreen.storyboard */,
 				65E0A0871C28147200162B27 /* Info.plist */,
 				656ED6011C2E75E1006631FB /* AboutViewController.swift */,
 			);
@@ -128,8 +131,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65E0A0861C28147200162B27 /* LaunchScreen.storyboard in Resources */,
 				656ED6081C2FD333006631FB /* BullsEye.html in Resources */,
+				656ED60F1C2FDE39006631FB /* Default-568h@2x.png in Resources */,
+				656ED6101C2FDE39006631FB /* Default@2x.png in Resources */,
 				65E0A0831C28147200162B27 /* Assets.xcassets in Resources */,
 				65E0A0811C28147200162B27 /* Main.storyboard in Resources */,
 			);
@@ -157,14 +161,6 @@
 				65E0A0801C28147200162B27 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		65E0A0841C28147200162B27 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65E0A0851C28147200162B27 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
