@@ -22,7 +22,7 @@ class AboutViewController: UIViewController {
     }
     
     @IBAction func close() {
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     /*
