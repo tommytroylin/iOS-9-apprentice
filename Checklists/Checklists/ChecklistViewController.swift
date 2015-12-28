@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChecklistViewController: UITableViewController {
+class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
   var checklistItems = [ChecklistItem]()
   
   required init?(coder aDecoder: NSCoder) {
@@ -52,16 +52,27 @@ class ChecklistViewController: UITableViewController {
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     self.checklistItems.removeAtIndex(indexPath.row)
     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    print(self.checklistItems)
-    
   }
-  
-  @IBAction func addItem(sender: UIBarButtonItem) {
-    self.checklistItems.append(ChecklistItem(text: "I am a new row", checked: false))
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    super.prepareForSegue(segue, sender: sender)
+    if segue.identifier == "AddItem" {
+      let navigationController = segue.destinationViewController as! UINavigationController
+      let controller = navigationController.topViewController as! AddItemViewController
+      controller.delegate = self
+    }
+  }
+
+
+  func addItemViewControllerDidCancel(controller: AddItemViewController) {
+    controller.dismissViewControllerAnimated(true, completion: nil)
+  }
+
+  func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: ChecklistItem) {
+    self.checklistItems.append(item)
     let indexPath = NSIndexPath(forRow: self.checklistItems.count - 1, inSection: 0)
     tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    print(self.checklistItems)
-    
+    controller.dismissViewControllerAnimated(true, completion: nil)
   }
-  
+
 }

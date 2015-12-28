@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" title="Checklist" id="j06-1y-T2p">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gcK-9O-uAe">
                             <connections>
-                                <segue destination="x4X-MW-OAq" kind="presentation" id="fLR-ID-gma"/>
+                                <segue destination="x4X-MW-OAq" kind="presentation" identifier="AddItem" id="fLR-ID-gma"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -72,6 +72,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
                                                         <action selector="done" destination="4iL-Vw-D7W" eventType="editingDidEndOnExit" id="VBA-rC-Fld"/>
+                                                        <outlet property="delegate" destination="4iL-Vw-D7W" id="gd2-f2-AnL"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -91,13 +92,14 @@
                                 <action selector="cancel" destination="4iL-Vw-D7W" id="Cup-aP-5U2"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="JNw-9h-eim">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="JNw-9h-eim">
                             <connections>
                                 <action selector="done" destination="4iL-Vw-D7W" id="7VR-WB-jOs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="JNw-9h-eim" id="CKb-De-r79"/>
                         <outlet property="textField" destination="pZt-3t-7Hi" id="RfJ-Kd-6QX"/>
                     </connections>
                 </tableViewController>
