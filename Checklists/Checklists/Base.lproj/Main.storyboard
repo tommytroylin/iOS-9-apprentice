@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Checklist-->
@@ -14,20 +15,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChecklistItem" id="KUm-Di-AUd">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="KUm-Di-AUd">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KUm-Di-AUd" id="mXw-Gc-YV9">
-                                    <rect key="frame" x="0.0" y="0.0" width="561" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="533" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGz-fQ-kio">
-                                            <rect key="frame" x="8" y="11" width="553" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGz-fQ-kio">
+                                            <rect key="frame" x="50" y="11" width="465" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☑️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rs2-IY-xgL">
+                                            <rect key="frame" x="18" y="11" width="22" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="rs2-IY-xgL" firstAttribute="baseline" secondItem="KGz-fQ-kio" secondAttribute="baseline" id="BSm-Pv-2SY"/>
+                                        <constraint firstItem="rs2-IY-xgL" firstAttribute="leading" secondItem="mXw-Gc-YV9" secondAttribute="leadingMargin" constant="10" id="H8O-cs-64G"/>
+                                        <constraint firstItem="KGz-fQ-kio" firstAttribute="leading" secondItem="rs2-IY-xgL" secondAttribute="trailing" constant="10" id="OQ3-SW-TEz"/>
+                                        <constraint firstItem="KGz-fQ-kio" firstAttribute="height" secondItem="rs2-IY-xgL" secondAttribute="height" id="d2g-kF-PmM"/>
+                                        <constraint firstItem="rs2-IY-xgL" firstAttribute="leading" secondItem="mXw-Gc-YV9" secondAttribute="leadingMargin" id="d9d-G9-RqP"/>
+                                        <constraint firstItem="rs2-IY-xgL" firstAttribute="centerY" secondItem="mXw-Gc-YV9" secondAttribute="centerY" id="eQ4-v2-oIp"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="KGz-fQ-kio" secondAttribute="trailing" constant="10" id="jUh-xb-fvd"/>
+                                        <constraint firstItem="KGz-fQ-kio" firstAttribute="leading" secondItem="rs2-IY-xgL" secondAttribute="trailing" constant="1" id="waA-vz-Tk6"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="d9d-G9-RqP"/>
+                                            <exclude reference="waA-vz-Tk6"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

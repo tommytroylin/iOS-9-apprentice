@@ -37,14 +37,16 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     let cell = tableView.dequeueReusableCellWithIdentifier("ChecklistItem", forIndexPath: indexPath)
     let label = cell.viewWithTag(1000) as! UILabel
     label.text = self.checklistItems[indexPath.row].text
-    cell.accessoryType = self.checklistItems[indexPath.row].checked ? .Checkmark : .None
+    let checkLable = cell.viewWithTag(1001) as! UILabel
+    checkLable.hidden = !self.checklistItems[indexPath.row].checked
     return cell
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if let cell = tableView.cellForRowAtIndexPath(indexPath) {
       self.checklistItems[indexPath.row].toggle()
-      cell.accessoryType = self.checklistItems[indexPath.row].checked ? .Checkmark : .None
+      let checkLable = cell.viewWithTag(1001) as! UILabel
+      checkLable.hidden = !self.checklistItems[indexPath.row].checked
     }
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
   }
