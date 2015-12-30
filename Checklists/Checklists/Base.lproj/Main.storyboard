@@ -52,6 +52,9 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="x4X-MW-OAq" kind="presentation" identifier="EditItem" trigger="accessoryAction" id="vpm-Xg-XJR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -167,4 +170,7 @@
             <point key="canvasLocation" x="2061" y="495"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vpm-Xg-XJR"/>
+    </inferredMetricsTieBreakers>
 </document>
