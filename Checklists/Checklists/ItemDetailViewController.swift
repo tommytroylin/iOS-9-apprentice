@@ -1,5 +1,5 @@
 //
-// AddItemViewController.swift
+// ItemDetailViewController.swift
 // Checklists
 //
 // Created by Keyu Lin on 12/28/15.
@@ -9,17 +9,17 @@
 import Foundation
 import UIKit
 
-protocol AddItemViewControllerDelegate : class {
-  func addItemViewControllerDidCancel(controller: AddItemViewController)
-  func addItemViewController(controller: AddItemViewController, didFinishAddingItem item: ChecklistItem)
-  func addItemViewController(controller: AddItemViewController, didFinishEditingItem item: ChecklistItem)
+protocol ItemDetailViewControllerDelegate : class {
+  func itemDetailViewControllerDidCancel(controller: ItemDetailViewController)
+  func itemDetailViewController(controller: ItemDetailViewController, didFinishAddingItem item: ChecklistItem)
+  func itemDetailViewController(controller: ItemDetailViewController, didFinishEditingItem item: ChecklistItem)
 }
 
-class AddItemViewController: UITableViewController, UITextFieldDelegate {
+class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
   
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var doneButton: UIBarButtonItem!
-  weak var delegate: AddItemViewControllerDelegate?
+  weak var delegate: ItemDetailViewControllerDelegate?
   var itemToEdit: ChecklistItem?
 
   override func viewWillAppear(animated: Bool) {
@@ -32,15 +32,15 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
   }
   
   @IBAction func cancel() {
-    delegate?.addItemViewControllerDidCancel(self)
+    delegate?.itemDetailViewControllerDidCancel(self)
   }
   
   @IBAction func done() {
     if let editedItem = itemToEdit {
       editedItem.text = textField.text!
-      delegate?.addItemViewController(self, didFinishEditingItem: editedItem)
+      delegate?.itemDetailViewController(self, didFinishEditingItem: editedItem)
     } else {
-      delegate?.addItemViewController(self, didFinishAddingItem:ChecklistItem(text: textField.text!, checked: false))
+      delegate?.itemDetailViewController(self, didFinishAddingItem:ChecklistItem(text: textField.text!, checked: false))
     }
   }
   

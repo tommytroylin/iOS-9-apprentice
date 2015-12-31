@@ -77,7 +77,7 @@
         <!--Add Item-->
         <scene sceneID="BY2-JJ-CdV">
             <objects>
-                <tableViewController id="4iL-Vw-D7W" customClass="AddItemViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="4iL-Vw-D7W" customClass="ItemDetailViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="xVD-bB-aYC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,6 +171,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vpm-Xg-XJR"/>
+        <segue reference="fLR-ID-gma"/>
     </inferredMetricsTieBreakers>
 </document>
