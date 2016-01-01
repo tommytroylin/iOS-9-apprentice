@@ -13,10 +13,14 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    self.checklistItems.append(ChecklistItem(text: "Walk the dog", checked: false))
-    self.checklistItems.append(ChecklistItem(text: "Learn iOS development", checked: true))
-    self.checklistItems.append(ChecklistItem(text: "Soccer practice", checked: false))
-    self.checklistItems.append(ChecklistItem(text: "Eat ice cream", checked: true))
+    let path = Persist.dataFilePath()
+    if NSFileManager.defaultManager().fileExistsAtPath(path) {
+      if let data = NSData(contentsOfFile: path) {
+        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+        checklistItems = unarchiver.decodeObjectForKey("ChecklistItems") as! [ChecklistItem]
+        unarchiver.finishDecoding()
+      }
+    }
   }
   
   override func viewDidLoad() {
@@ -49,11 +53,13 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
       checkLable.hidden = !self.checklistItems[indexPath.row].checked
     }
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    Persist.saveChecklistItems(checklistItems)
   }
   
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     self.checklistItems.removeAtIndex(indexPath.row)
     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    Persist.saveChecklistItems(checklistItems)
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -85,6 +91,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
       }
     }
     controller.dismissViewControllerAnimated(true, completion: nil)
+    Persist.saveChecklistItems(checklistItems)
   }
 
   func itemDetailViewController(controller: ItemDetailViewController, didFinishAddingItem item: ChecklistItem) {
@@ -92,6 +99,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     let indexPath = NSIndexPath(forRow: self.checklistItems.count - 1, inSection: 0)
     tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     controller.dismissViewControllerAnimated(true, completion: nil)
+    Persist.saveChecklistItems(checklistItems)
   }
 
-}
+ }
