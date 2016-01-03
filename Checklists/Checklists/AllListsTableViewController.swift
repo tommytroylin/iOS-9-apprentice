@@ -10,6 +10,14 @@ import UIKit
 
 class AllListsTableViewController: UITableViewController {
 
+  var checklists: [Checklist]
+  required init?(coder aDecoder: NSCoder) {
+    checklists = [Checklist]()
+    super.init(coder: aDecoder)
+    let list = Checklist(name: "Hello")
+    checklists.append(list)
+    checklists.append(list)
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -34,12 +42,13 @@ class AllListsTableViewController: UITableViewController {
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
-    return 3
+    return checklists.count
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = cellForTableView(tableView)
-    cell.textLabel!.text = "List \(indexPath.row)"
+    cell.textLabel!.text = "\(checklists[indexPath.row].name)"
+    cell.accessoryType = .DetailDisclosureButton
 
     return cell
   }
