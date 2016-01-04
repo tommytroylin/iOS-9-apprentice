@@ -14,9 +14,8 @@ class AllListsTableViewController: UITableViewController {
   required init?(coder aDecoder: NSCoder) {
     checklists = [Checklist]()
     super.init(coder: aDecoder)
-    let list = Checklist(name: "Hello")
-    checklists.append(list)
-    checklists.append(list)
+    checklists.append(Checklist(name: "Hello"))
+    checklists.append(Checklist(name: "Tommy"))
   }
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -63,7 +62,15 @@ class AllListsTableViewController: UITableViewController {
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    performSegueWithIdentifier("ShowChecklist", sender: nil)
+    let checklist = checklists[indexPath.row]
+    performSegueWithIdentifier("ShowChecklist", sender: checklist)
+  }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "ShowChecklist" {
+      let controller = segue.destinationViewController as! ChecklistViewController
+      controller.checklist = sender as! Checklist
+    }
   } 
 
   /*

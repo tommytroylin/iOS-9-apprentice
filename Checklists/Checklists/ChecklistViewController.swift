@@ -10,7 +10,8 @@ import UIKit
 
 class ChecklistViewController: UITableViewController, ItemDetailViewControllerDelegate {
   var checklistItems = [ChecklistItem]()
-  
+  var checklist: Checklist!
+
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     let path = Persist.dataFilePath()
@@ -22,21 +23,22 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
       }
     }
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    title = checklist.name
     // Do any additional setup after loading the view, typically from a nib.
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
+
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return checklistItems.count
   }
-  
+
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("ChecklistItem", forIndexPath: indexPath)
     let label = cell.viewWithTag(1000) as! UILabel
@@ -45,7 +47,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     checkLable.hidden = !self.checklistItems[indexPath.row].checked
     return cell
   }
-  
+
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if let cell = tableView.cellForRowAtIndexPath(indexPath) {
       self.checklistItems[indexPath.row].toggle()
@@ -55,7 +57,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     tableView.deselectRowAtIndexPath(indexPath, animated: true)
     Persist.saveChecklistItems(checklistItems)
   }
-  
+
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     self.checklistItems.removeAtIndex(indexPath.row)
     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
@@ -78,13 +80,12 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     }
   }
 
-
   func itemDetailViewControllerDidCancel(controller: ItemDetailViewController) {
     controller.dismissViewControllerAnimated(true, completion: nil)
   }
 
   func itemDetailViewController(controller: ItemDetailViewController, didFinishEditingItem item: ChecklistItem) {
-    if let index = checklistItems.indexOf({$0 === item}) {
+    if let index = checklistItems.indexOf({ $0 === item }) {
       let indexPath = NSIndexPath(forRow: index, inSection: 0)
       if let cell = tableView.cellForRowAtIndexPath(indexPath) {
         (cell.viewWithTag(1000) as! UILabel).text = item.text
@@ -101,5 +102,4 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     controller.dismissViewControllerAnimated(true, completion: nil)
     Persist.saveChecklistItems(checklistItems)
   }
-
- }
+}
