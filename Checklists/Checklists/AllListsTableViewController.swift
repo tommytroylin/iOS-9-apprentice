@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsTableViewController: UITableViewController {
+class AllListsTableViewController: UITableViewController,ListDetailViewControllerDelegate {
 
   var checklists: [Checklist]
   required init?(coder aDecoder: NSCoder) {
@@ -17,6 +17,7 @@ class AllListsTableViewController: UITableViewController {
     checklists.append(Checklist(name: "Hello"))
     checklists.append(Checklist(name: "Tommy"))
   }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -38,6 +39,16 @@ class AllListsTableViewController: UITableViewController {
 //    // #warning Incomplete implementation, return the number of sections
 //    return 0
 //  }
+
+  func listDetailViewControllerDidCancel(controller: ListDetailViewController){
+    controller.dismissViewControllerAnimated(true, completion: nil)
+  }
+  func listDetailViewController(controller: ListDetailViewController, didFinishAddingChecklist checklist: Checklist){
+    controller.dismissViewControllerAnimated(true, completion: nil)
+  }
+  func listDetailViewController(controller: ListDetailViewController, didFinishEditingChecklist checklist: Checklist){
+    controller.dismissViewControllerAnimated(true, completion: nil)
+  }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // #warning Incomplete implementation, return the number of rows
@@ -70,6 +81,11 @@ class AllListsTableViewController: UITableViewController {
     if segue.identifier == "ShowChecklist" {
       let controller = segue.destinationViewController as! ChecklistViewController
       controller.checklist = sender as! Checklist
+    }else if segue.identifier == "AddChecklist" {
+      let navigationController = segue.destinationViewController as! UINavigationController
+      let controller = navigationController.topViewController as! ListDetailViewController
+      controller.delegate = self
+      controller.checklistToEdit = nil
     }
   } 
 
