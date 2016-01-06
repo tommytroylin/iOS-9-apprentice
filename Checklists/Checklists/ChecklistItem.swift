@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ChecklistItem :NSObject, NSCoding{
+class ChecklistItem: NSObject, NSCoding {
   var text = ""
   var checked = false
 
@@ -17,11 +17,11 @@ class ChecklistItem :NSObject, NSCoding{
     checked = aDecoder.decodeBoolForKey("Checked")
 
   }
-  init(text:String,checked:Bool){
+  init(text: String, checked: Bool) {
     self.text = text
     self.checked = checked
   }
-  
+
   func toggle() {
     self.checked = !self.checked
   }
@@ -30,5 +30,5 @@ class ChecklistItem :NSObject, NSCoding{
     aCoder.encodeObject(text, forKey: "Text")
     aCoder.encodeBool(checked, forKey: "Checked")
   }
-  
+
 }

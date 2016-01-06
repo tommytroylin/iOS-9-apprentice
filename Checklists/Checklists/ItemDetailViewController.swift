@@ -9,14 +9,16 @@
 import Foundation
 import UIKit
 
-protocol ItemDetailViewControllerDelegate : class {
+protocol ItemDetailViewControllerDelegate: class {
   func itemDetailViewControllerDidCancel(controller: ItemDetailViewController)
+
   func itemDetailViewController(controller: ItemDetailViewController, didFinishAddingItem item: ChecklistItem)
+
   func itemDetailViewController(controller: ItemDetailViewController, didFinishEditingItem item: ChecklistItem)
 }
 
 class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
-  
+
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var doneButton: UIBarButtonItem!
   weak var delegate: ItemDetailViewControllerDelegate?
@@ -30,20 +32,20 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
   override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
     return nil
   }
-  
+
   @IBAction func cancel() {
     delegate?.itemDetailViewControllerDidCancel(self)
   }
-  
+
   @IBAction func done() {
     if let editedItem = itemToEdit {
       editedItem.text = textField.text!
       delegate?.itemDetailViewController(self, didFinishEditingItem: editedItem)
     } else {
-      delegate?.itemDetailViewController(self, didFinishAddingItem:ChecklistItem(text: textField.text!, checked: false))
+      delegate?.itemDetailViewController(self, didFinishAddingItem: ChecklistItem(text: textField.text!, checked: false))
     }
   }
-  
+
   func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
     let newString: NSString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
     self.doneButton.enabled = (newString.length != 0)
@@ -57,5 +59,5 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
       textField.text = item.text
     }
   }
-  
+
 }

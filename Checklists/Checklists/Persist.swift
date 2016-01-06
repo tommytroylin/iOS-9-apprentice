@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class Persist {
   class func documentsDirectory() -> String {
     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
@@ -17,7 +18,7 @@ class Persist {
     return (documentsDirectory() as NSString).stringByAppendingPathComponent("Checklists.plist")
   }
 
-  class func saveChecklistItems(checklistItems:Array<NSCoding>) {
+  class func saveChecklistItems(checklistItems: Array<NSCoding>) {
     let data = NSMutableData()
     let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
     archiver.encodeObject(checklistItems, forKey: "ChecklistItems")
@@ -25,7 +26,7 @@ class Persist {
     data.writeToFile(dataFilePath(), atomically: true)
   }
 
-  class func loadChecklistItems() -> Array<ChecklistItem>{
+  class func loadChecklistItems() -> Array<ChecklistItem> {
     return []
   }
 

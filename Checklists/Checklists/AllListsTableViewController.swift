@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsTableViewController: UITableViewController,ListDetailViewControllerDelegate {
+class AllListsTableViewController: UITableViewController, ListDetailViewControllerDelegate {
 
   var checklists: [Checklist]
   required init?(coder aDecoder: NSCoder) {
@@ -40,13 +40,15 @@ class AllListsTableViewController: UITableViewController,ListDetailViewControlle
 //    return 0
 //  }
 
-  func listDetailViewControllerDidCancel(controller: ListDetailViewController){
+  func listDetailViewControllerDidCancel(controller: ListDetailViewController) {
     controller.dismissViewControllerAnimated(true, completion: nil)
   }
-  func listDetailViewController(controller: ListDetailViewController, didFinishAddingChecklist checklist: Checklist){
+
+  func listDetailViewController(controller: ListDetailViewController, didFinishAddingChecklist checklist: Checklist) {
     controller.dismissViewControllerAnimated(true, completion: nil)
   }
-  func listDetailViewController(controller: ListDetailViewController, didFinishEditingChecklist checklist: Checklist){
+
+  func listDetailViewController(controller: ListDetailViewController, didFinishEditingChecklist checklist: Checklist) {
     controller.dismissViewControllerAnimated(true, completion: nil)
   }
 
@@ -65,11 +67,11 @@ class AllListsTableViewController: UITableViewController,ListDetailViewControlle
 
   func cellForTableView(tableView: UITableView) -> UITableViewCell {
     let cellIdentifier = "Cell"
- if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
+    if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
       return cell
- } else { 
- return UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier) 
- }
+    } else {
+      return UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+    }
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -81,13 +83,13 @@ class AllListsTableViewController: UITableViewController,ListDetailViewControlle
     if segue.identifier == "ShowChecklist" {
       let controller = segue.destinationViewController as! ChecklistViewController
       controller.checklist = sender as! Checklist
-    }else if segue.identifier == "AddChecklist" {
+    } else if segue.identifier == "AddChecklist" {
       let navigationController = segue.destinationViewController as! UINavigationController
       let controller = navigationController.topViewController as! ListDetailViewController
       controller.delegate = self
       controller.checklistToEdit = nil
     }
-  } 
+  }
 
   /*
    // Override to support conditional editing of the table view.
