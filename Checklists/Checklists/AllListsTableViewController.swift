@@ -45,11 +45,23 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
   }
 
   func listDetailViewController(controller: ListDetailViewController, didFinishAddingChecklist checklist: Checklist) {
+    self.checklists.append(checklist)
+    let indexPath = NSIndexPath(forRow: self.checklists.count - 1, inSection: 0)
+    tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     controller.dismissViewControllerAnimated(true, completion: nil)
+    //TODO persist
   }
 
   func listDetailViewController(controller: ListDetailViewController, didFinishEditingChecklist checklist: Checklist) {
+    if let index = checklists.indexOf({ $0 == checklist }) {
+      let indexPath = NSIndexPath(forRow: index, inSection: 0)
+      if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+        cell.textLabel!.text = checklist.name
+      }
+    }
+
     controller.dismissViewControllerAnimated(true, completion: nil)
+    //TODO persist
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,6 +77,11 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     return cell
   }
 
+  override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    checklists.removeAtIndex(indexPath.row)
+    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+  }
+  
   func cellForTableView(tableView: UITableView) -> UITableViewCell {
     let cellIdentifier = "Cell"
     if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
