@@ -96,6 +96,14 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     performSegueWithIdentifier("ShowChecklist", sender: checklist)
   }
 
+  override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    let navigationController = storyboard!.instantiateViewControllerWithIdentifier("ListDetailNavigationController") as! UINavigationController
+    let controller = navigationController.topViewController as! ListDetailViewController
+    controller.delegate = self
+    controller.checklistToEdit = checklists[indexPath.row]
+    presentViewController(navigationController,animated: true,completion: nil)
+  }
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "ShowChecklist" {
       let controller = segue.destinationViewController as! ChecklistViewController

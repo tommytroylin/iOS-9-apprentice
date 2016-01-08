@@ -70,7 +70,7 @@
         <!--Navigation Controller-->
         <scene sceneID="BVV-6p-z6K">
             <objects>
-                <navigationController id="oW7-Zf-BSi" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ListDetailNavigationController" id="oW7-Zf-BSi" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FJo-At-hMD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
