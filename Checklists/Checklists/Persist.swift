@@ -18,16 +18,26 @@ class Persist {
     return (documentsDirectory() as NSString).stringByAppendingPathComponent("Checklists.plist")
   }
 
-  class func saveChecklistItems(checklistItems: Array<NSCoding>) {
+  class func saveObject(object: Array<NSCoding>, forkey key: String) {
     let data = NSMutableData()
     let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-    archiver.encodeObject(checklistItems, forKey: "ChecklistItems")
+    archiver.encodeObject(object, forKey: key)
     archiver.finishEncoding()
     data.writeToFile(dataFilePath(), atomically: true)
   }
 
-  class func loadChecklistItems() -> Array<ChecklistItem> {
-    return []
+  class func loadObjectByKey(key: String) -> AnyObject? {
+    let path = dataFilePath()
+    if NSFileManager.defaultManager().fileExistsAtPath(path) {
+      if let data = NSData(contentsOfFile: path) {
+        let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
+        let objects = unarchiver.decodeObjectForKey(key)
+        unarchiver.finishDecoding()
+        return objects
+      }
+      return nil
+    }
+    return nil
   }
 
 }
