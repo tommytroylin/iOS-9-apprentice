@@ -11,11 +11,14 @@ import UIKit
 class AllListsTableViewController: UITableViewController, ListDetailViewControllerDelegate {
 
   var checklists: [Checklist]
+
   required init?(coder aDecoder: NSCoder) {
-    checklists = [Checklist]()
+    if let checklistsFromFile = Persist.loadObjectByKey("checklists") as? [Checklist] {
+      checklists = checklistsFromFile
+    } else {
+      checklists = [Checklist]()
+    }
     super.init(coder: aDecoder)
-    checklists.append(Checklist(name: "Hello"))
-    checklists.append(Checklist(name: "Tommy"))
   }
 
   override func viewDidLoad() {
@@ -50,6 +53,7 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     controller.dismissViewControllerAnimated(true, completion: nil)
     //TODO persist
+    Persist.saveObject(checklists, forkey: "checklists")
   }
 
   func listDetailViewController(controller: ListDetailViewController, didFinishEditingChecklist checklist: Checklist) {
@@ -62,6 +66,7 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
 
     controller.dismissViewControllerAnimated(true, completion: nil)
     //TODO persist
+    Persist.saveObject(checklists, forkey: "checklists")
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,8 +85,9 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
   override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
     checklists.removeAtIndex(indexPath.row)
     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    Persist.saveObject(checklists, forkey: "checklists")
   }
-  
+
   func cellForTableView(tableView: UITableView) -> UITableViewCell {
     let cellIdentifier = "Cell"
     if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
@@ -101,7 +107,7 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     let controller = navigationController.topViewController as! ListDetailViewController
     controller.delegate = self
     controller.checklistToEdit = checklists[indexPath.row]
-    presentViewController(navigationController,animated: true,completion: nil)
+    presentViewController(navigationController, animated: true, completion: nil)
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
