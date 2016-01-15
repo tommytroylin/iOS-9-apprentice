@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsTableViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsTableViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
 
   var dataModel: DataModel!
 
@@ -82,6 +82,7 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    NSUserDefaults.standardUserDefaults().setInteger(indexPath.row, forKey: "ChecklistIndex")
     let checklist = dataModel.checklists[indexPath.row]
     performSegueWithIdentifier("ShowChecklist", sender: checklist)
   }
@@ -106,6 +107,20 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     }
   }
 
+  func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    if viewController === self {
+      NSUserDefaults.standardUserDefaults().setInteger(-1, forKey: "ChecklistIndex")
+    }
+  }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    navigationController?.delegate = self
+    let index = NSUserDefaults.standardUserDefaults().integerForKey("ChecklistIndex")
+    if index != -1 {
+      performSegueWithIdentifier("ShowChecklist", sender: dataModel.checklists[index])
+    }
+  }
   /*
    // Override to support conditional editing of the table view.
    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
