@@ -117,8 +117,9 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     super.viewDidAppear(animated)
     navigationController?.delegate = self
     let index = NSUserDefaults.standardUserDefaults().integerForKey("ChecklistIndex")
-    if index != -1 {
-      performSegueWithIdentifier("ShowChecklist", sender: dataModel.checklists[index])
+    let lists = dataModel.checklists
+    if index != -1 && index < lists.capacity {
+      performSegueWithIdentifier("ShowChecklist", sender: lists[index])
     }
   }
   /*
