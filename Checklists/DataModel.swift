@@ -13,15 +13,21 @@ class DataModel {
 
   init() {
     load()
-  }
-  func save(){
-    saveObject(checklists,forkey:"checklists")
+    registerDefaults()
   }
 
-  func load(){
+  func save() {
+    saveObject(checklists, forkey: "checklists")
+  }
+
+  func load() {
     if let checklistsFromFile = loadObjectByKey("checklists") as? [Checklist] {
       checklists = checklistsFromFile
     }
+  }
+
+  func registerDefaults() {
+    NSUserDefaults.standardUserDefaults().registerDefaults(["ChecklistIndex": -1])
   }
 
   private func documentsDirectory() -> String {
@@ -54,5 +60,4 @@ class DataModel {
     }
     return nil
   }
-  
 }
