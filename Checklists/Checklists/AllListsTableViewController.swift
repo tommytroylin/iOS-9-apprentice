@@ -82,7 +82,7 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    NSUserDefaults.standardUserDefaults().setInteger(indexPath.row + 1, forKey: "ChecklistIndex")
+    dataModel.indexOfSelectedChecklist = indexPath.row
     let checklist = dataModel.checklists[indexPath.row]
     performSegueWithIdentifier("ShowChecklist", sender: checklist)
   }
@@ -109,17 +109,16 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
 
   func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
     if viewController === self {
-      NSUserDefaults.standardUserDefaults().setInteger(-1, forKey: "ChecklistIndex")
+      dataModel.indexOfSelectedChecklist = -1
     }
   }
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     navigationController?.delegate = self
-    let index = NSUserDefaults.standardUserDefaults().integerForKey("ChecklistIndex")
-    let lists = dataModel.checklists
-    if index != -1 && index != 0 {
-      performSegueWithIdentifier("ShowChecklist", sender: lists[index - 1])
+    let index = dataModel.indexOfSelectedChecklist
+    if index != -1 {
+      performSegueWithIdentifier("ShowChecklist", sender: dataModel.checklists[index])
     }
   }
   /*
