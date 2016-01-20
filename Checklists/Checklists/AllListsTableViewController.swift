@@ -117,7 +117,7 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     super.viewDidAppear(animated)
     navigationController?.delegate = self
     let index = dataModel.indexOfSelectedChecklist
-    if index != -1 {
+    if index >= 0 && index < dataModel.checklists.count {
       performSegueWithIdentifier("ShowChecklist", sender: dataModel.checklists[index])
     }
   }
