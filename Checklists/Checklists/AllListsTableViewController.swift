@@ -64,6 +64,7 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     let cell = cellForTableView(tableView)
     cell.textLabel!.text = "\(dataModel.checklists[indexPath.row].name)"
     cell.accessoryType = .DetailDisclosureButton
+    cell.detailTextLabel!.text = "\(dataModel.checklists[indexPath.row].countUncheckedItems()) Remaining"
     return cell
   }
 
@@ -77,7 +78,7 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
       return cell
     } else {
-      return UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+      return UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
     }
   }
 
@@ -111,6 +112,11 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     if viewController === self {
       dataModel.indexOfSelectedChecklist = -1
     }
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    tableView.reloadData()
   }
 
   override func viewDidAppear(animated: Bool) {
