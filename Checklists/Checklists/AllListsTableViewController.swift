@@ -62,12 +62,16 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = cellForTableView(tableView)
-    cell.textLabel!.text = "\(dataModel.checklists[indexPath.row].name)"
+    let checklist = dataModel.checklists[indexPath.row]
+    cell.textLabel!.text = "\(checklist.name)"
     cell.accessoryType = .DetailDisclosureButton
-    if dataModel.checklists[indexPath.row].countUncheckedItems() == 0 {
-      cell.detailTextLabel!.text = "All done!"
+    let count = checklist.countUncheckedItems()
+    if checklist.items.count == 0 {
+      cell.detailTextLabel!.text = "(No Items)"
+    } else if count == 0 {
+      cell.detailTextLabel!.text = "All Done!"
     } else {
-      cell.detailTextLabel!.text = "\(dataModel.checklists[indexPath.row].countUncheckedItems()) Remaining"
+      cell.detailTextLabel!.text = "\(count) Remaining"
     }
     return cell
   }
