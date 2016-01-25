@@ -29,11 +29,7 @@ class Checklist: NSObject, NSCoding {
   }
 
   func countUncheckedItems() -> Int {
-    var count = 0
-    for item in items where !item.checked {
-      count += 1
-    }
-    return count
+    return items.reduce(0, combine: { $0 + ($1.checked ? 0 : 1) })
   }
 
 }
