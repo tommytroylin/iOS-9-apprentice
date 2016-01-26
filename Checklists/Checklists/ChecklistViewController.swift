@@ -76,6 +76,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         (cell.viewWithTag(1000) as! UILabel).text = item.text
       }
     }
+    checklist.sortItems()
+    tableView.reloadData()
     controller.dismissViewControllerAnimated(true, completion: nil)
   }
 
@@ -83,6 +85,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     self.checklist.items.append(item)
     let indexPath = NSIndexPath(forRow: self.checklist.items.count - 1, inSection: 0)
     tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    checklist.sortItems()
+    tableView.reloadData()
     controller.dismissViewControllerAnimated(true, completion: nil)
   }
 }

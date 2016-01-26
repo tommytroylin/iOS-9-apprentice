@@ -32,4 +32,8 @@ class Checklist: NSObject, NSCoding {
     return items.reduce(0, combine: { $0 + ($1.checked ? 0 : 1) })
   }
 
+  func sortItems() {
+    items.sortInPlace({$0.text.localizedStandardCompare($1.text) == .OrderedAscending})
+  }
+
 }
