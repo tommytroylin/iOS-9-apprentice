@@ -65,6 +65,7 @@ class AllListsTableViewController: UITableViewController, ListDetailViewControll
     let checklist = dataModel.checklists[indexPath.row]
     cell.textLabel!.text = "\(checklist.name)"
     cell.accessoryType = .DetailDisclosureButton
+    cell.imageView!.image = UIImage(named: checklist.iconName)
     let count = checklist.countUncheckedItems()
     if checklist.items.count == 0 {
       cell.detailTextLabel!.text = "(No Items)"

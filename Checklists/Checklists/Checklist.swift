@@ -11,21 +11,26 @@ import Foundation
 class Checklist: NSObject, NSCoding {
   var name = ""
   var items: [ChecklistItem]
+  var iconName: String
 
   @objc required init?(coder aDecoder: NSCoder) {
     name = aDecoder.decodeObjectForKey("name") as! String
     items = aDecoder.decodeObjectForKey("items") as! [ChecklistItem]
+    iconName = aDecoder.decodeObjectForKey("iconName") as! String
+    super.init()
   }
 
   init(name: String) {
     self.name = name
     self.items = [ChecklistItem]()
+    self.iconName = "Appointments"
     super.init()
   }
 
   @objc func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeObject(name, forKey: "name")
     aCoder.encodeObject(items, forKey: "items")
+    aCoder.encodeObject(iconName, forKey: "iconName")
   }
 
   func countUncheckedItems() -> Int {
