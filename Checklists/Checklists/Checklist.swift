@@ -23,7 +23,7 @@ class Checklist: NSObject, NSCoding {
   init(name: String) {
     self.name = name
     self.items = [ChecklistItem]()
-    self.iconName = "Appointments"
+    self.iconName = "No Icon"
     super.init()
   }
 
