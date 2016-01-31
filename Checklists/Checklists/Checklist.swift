@@ -20,11 +20,15 @@ class Checklist: NSObject, NSCoding {
     super.init()
   }
 
-  init(name: String) {
+  init(name: String, iconName: String) {
     self.name = name
     self.items = [ChecklistItem]()
-    self.iconName = "No Icon"
+    self.iconName = iconName
     super.init()
+  }
+
+  convenience init(name: String) {
+    self.init(name: name, iconName: "No Icon")
   }
 
   @objc func encodeWithCoder(aCoder: NSCoder) {
@@ -38,7 +42,7 @@ class Checklist: NSObject, NSCoding {
   }
 
   func sortItems() {
-    items.sortInPlace({$0.text.localizedStandardCompare($1.text) == .OrderedAscending})
+    items.sortInPlace({ $0.text.localizedStandardCompare($1.text) == .OrderedAscending })
   }
 
 }
