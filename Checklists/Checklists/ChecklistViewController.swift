@@ -31,6 +31,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     let label = cell.viewWithTag(1000) as! UILabel
     label.text = self.checklist.items[indexPath.row].text
     let checkLable = cell.viewWithTag(1001) as! UILabel
+    checkLable.textColor = view.tintColor
     checkLable.hidden = !self.checklist.items[indexPath.row].checked
     return cell
   }
