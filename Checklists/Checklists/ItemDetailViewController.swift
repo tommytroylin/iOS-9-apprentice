@@ -19,8 +19,12 @@ protocol ItemDetailViewControllerDelegate: class {
 
 class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
 
+  @IBOutlet weak var shouldRemindSwitch: UISwitch!
   @IBOutlet weak var textField: UITextField!
   @IBOutlet weak var doneButton: UIBarButtonItem!
+  @IBOutlet weak var dueDateLabel: UILabel!
+
+  var dueDate:NSDate?
   weak var delegate: ItemDetailViewControllerDelegate?
   var itemToEdit: ChecklistItem?
 
@@ -57,7 +61,21 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     if let item = itemToEdit {
       title = "Edit Item"
       textField.text = item.text
+      shouldRemindSwitch.on = item.shouldRemind
+      dueDate = item.dueDate
+      updateDueDateLabel()
     }
   }
 
+  func updateDueDateLabel() {
+    let formatter = NSDateFormatter()
+    formatter.dateStyle = .MediumStyle
+    formatter.timeStyle = .ShortStyle
+    if let displayDate = dueDate {
+      dueDateLabel.text = formatter.stringFromDate(displayDate)
+    } else {
+      dueDateLabel.text = "Not Set."
+    }
+
+  }
 }
