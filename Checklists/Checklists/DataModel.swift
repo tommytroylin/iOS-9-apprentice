@@ -37,10 +37,10 @@ class DataModel {
 
   func registerDefaults() {
     NSUserDefaults.standardUserDefaults().registerDefaults([
-      "ChecklistIndex": -1,
-      "FirstTime": true,
-      "ChecklistItemID":0,
-      ])
+        "ChecklistIndex": -1,
+        "FirstTime": true,
+        "ChecklistItemID": 0,
+    ])
   }
 
   func handleFirstTime() {

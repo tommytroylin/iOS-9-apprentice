@@ -40,9 +40,8 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate, Icon
       let checklist = Checklist(name: textField.text!, iconName: iconName)
       delegate?.listDetailViewController(self, didFinishAddingChecklist: checklist)
     }
-
-
   }
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
