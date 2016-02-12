@@ -106,11 +106,13 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
       editedItem.text = textField.text!
       editedItem.shouldRemind = shouldRemindSwitch.on
       editedItem.dueDate = dueDate
+      editedItem.scheduleNotification()
       delegate?.itemDetailViewController(self, didFinishEditingItem: editedItem)
     } else {
       let newItem = ChecklistItem(text: textField.text!, checked: false)
       newItem.shouldRemind = shouldRemindSwitch.on
       newItem.dueDate = dueDate
+      newItem.scheduleNotification()
       delegate?.itemDetailViewController(self, didFinishAddingItem: newItem)
     }
   }
@@ -159,4 +161,7 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     tableView.deleteRowsAtIndexPaths([indexPathDatePicker], withRowAnimation: .Fade)
   }
 
+  func textFieldDidBeginEditing(textField: UITextField) {
+    hideDatePicker()
+  }
 }

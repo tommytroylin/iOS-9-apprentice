@@ -42,4 +42,9 @@ class ChecklistItem: NSObject, NSCoding {
     aCoder.encodeInteger(itemID, forKey: "ItemID")
   }
 
+  func scheduleNotification() {
+    if shouldRemind && dueDate?.compare(NSDate()) != .OrderedAscending {
+    print("We should schedule a notification!") }
+  }
+
 }
