@@ -81,11 +81,10 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     if indexPath.section == 1 && indexPath.row == 1 {
       if datePickerVisible {
-      hideDatePicker()
+        hideDatePicker()
+      } else {
+        showDatePicker()
       }
-      else {
-     showDatePicker()
-     }
     }
   }
 
@@ -156,9 +155,11 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
   }
 
   func hideDatePicker() {
-    datePickerVisible = false
-    let indexPathDatePicker = NSIndexPath(forRow: 2, inSection: 1)
-    tableView.deleteRowsAtIndexPaths([indexPathDatePicker], withRowAnimation: .Fade)
+    if datePickerVisible {
+      datePickerVisible = false
+      let indexPathDatePicker = NSIndexPath(forRow: 2, inSection: 1)
+      tableView.deleteRowsAtIndexPaths([indexPathDatePicker], withRowAnimation: .Fade)
+    }
   }
 
   func textFieldDidBeginEditing(textField: UITextField) {
